@@ -8,6 +8,7 @@ Version: 0.1
 /**
  * Style sheet
  */
+add_action( 'admin_enqueue_scripts','ra_days_style');
 add_action( 'wp_enqueue_scripts','ra_days_style');
  function ra_days_style(){
  	wp_enqueue_style( 'ra-days-bar-style', 	plugins_url( 'class-days-bar.css', __FILE__ ) );
@@ -82,6 +83,8 @@ register_activation_hook( __FILE__, 'ra_flush' );
  * @since 0.1
  */
 function ra_days_bar($before = 'Day: '){
+	$values = get_option('ra_days_bar_settings'); 
+	$color = $values['color_scheme'];
 	$taxonomy = 'class-day';
 	$args = array(
 		'taxonomy'     	=> $taxonomy,
@@ -93,7 +96,7 @@ function ra_days_bar($before = 'Day: '){
 		'hide_empty'	=> 0,
 	);
 	?>
-	<ul class="ra-days-bar">
+	<ul class="ra-days-bar <?php echo $color; ?>">
 		<li class="title-li"><?php echo $before; ?> </li>
 	<?php 
 	//get all the terms in the taxonomy
@@ -206,4 +209,61 @@ class Rad_Days_Bar_Widget extends WP_Widget{
 	
 		<?php
 	}
+}
+/**
+ * Color Scheme Options page
+ */
+add_action('admin_menu', 'rad_options_page');
+function rad_options_page() {
+	add_options_page( 'Class Days Bar', 'Class Days Bar', 'manage_options', 'ra-days-bar-options', 'ra_days_bar_options_page');
+}
+
+/**
+ * Whitelist plugin options for DB storage
+ */
+add_action( 'admin_init', 'ra_days_bar_register_settings' );
+function ra_days_bar_register_settings(){
+	//group name, row name, sanitizing callback function
+	register_setting( 'ra_days_bar_settings_group', 'ra_days_bar_settings', 'ra_days_bar_settings_sanitize' );
+}
+
+/**
+ * Sanitizing CB
+ */
+function ra_days_bar_settings_sanitize( $input ){
+	$input['color_scheme'] = wp_filter_nohtml_kses( $input['color_scheme'] );
+	return $input;
+}
+/**
+ * Settings page Output CB
+ */
+function ra_days_bar_options_page(){
+	//security capability check
+	if( ! current_user_can('manage_options') ):
+		wp_die('Access Denied');
+	else: ?>
+	<div class="wrap">
+		<h2>Class Days Bar Color Settings</h2>
+		<br>
+		<form action="options.php" method="post">
+			<?php 
+			settings_fields('ra_days_bar_settings_group');
+			$values = get_option('ra_days_bar_settings'); ?>
+			<label for="color_scheme">
+			Color Scheme
+			</label>
+			<select name="ra_days_bar_settings[color_scheme]" id="color_scheme">
+				<option value="dark" <?php selected( 'dark', $values['color_scheme'] ); ?>>Dark (best for light backgrounds)</option>
+				<option value="light" <?php selected( 'light', $values['color_scheme'] ); ?>>Light (best for dark backgrounds)</option>
+			</select>
+			<?php submit_button( 'Save Settings' ); ?>
+		</form>
+		
+		<h3>Demo:</h3>
+		<div class="days-bar-demo-box-<?php echo $values['color_scheme'] ?>" style="background-color:#<?php echo get_background_color(); ?>">
+		<?php ra_days_bar(); ?>
+		</div>
+	</div>
+<?php
+	endif; //end security check
 }

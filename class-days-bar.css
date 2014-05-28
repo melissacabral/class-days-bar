@@ -1,20 +1,17 @@
-/*==days bar*/
-
-*, *:before, *:after {
+/* == days bar*/
+.ra-days-bar *, .ra-days-bar *:before, .ra-days-bar *:after {
 	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 
+/*Default (light) scheme & layout*/
 .ra-days-bar{
 	display: block;
 	list-style-type: none;
 	margin:1em 0;
 	padding: 0;
-	background-color: #rgba(255,255,255,.1);
-	color:gray;
-	height:2em;
-	
+	color:rgba(255,255,255,.6);	
+	height:2em;	
 }
-
 .ra-days-bar li{
 	display: block;
 	float:left;
@@ -25,24 +22,22 @@
 	min-width: 1.5em;
 	text-align: center;
 	background-color:rgba(255,255,255,.15);
+	white-space: nowrap;
 }
-
+/*days remaining*/
 .ra-days-bar .current ~ li{
 	background-color:rgba(255,255,255,.1);
 }
-
 .ra-days-bar a{
 	display:block;
 	width: 100%;
 	height:100%;
 	padding:0;
 }
-
 .ra-days-bar .active a{
-	background-color:rgba(0,0,0,.5);
+	border-radius: 4px;
+	background-color:rgba(0,0,0,.25);
 }
-
-
 .morning-class,
 .ra-days-bar .current{
 	position: relative;
@@ -61,7 +56,6 @@
 }
 .ra-days-bar .current:after{
 	border-top:solid 8px #2baaca;
-
 }
 /* WIDGET-only styles*/
 .days-bar-widget .ra-days-bar{
@@ -74,6 +68,29 @@
 	width: 20%;
 	margin-bottom: 0 !important;
 }
+/*Admin Demo box*/
+.days-bar-demo-box-dark{
+	background-color:#E4E4E4;
+	padding:2em;
+}
+.days-bar-demo-box-light{
+	background-color:#3E3E3E;
+	padding:2em;
+}
+
+/* COLORS - Light & Dark Schemes */
+.ra-days-bar.dark{
+color:rgba(0,0,0,.6);
+}
+.ra-days-bar.dark li{
+	background-color: rgba(0,0,0,.15);
+}
+.ra-days-bar.dark .current ~ li{
+	background-color:rgba(0,0,0,.1);
+}
+.ra-days-bar.dark .active a{
+	background-color:rgba(255,255,255,.25);
+}
 
 @media only screen 
 and (max-width : 700px) {
@@ -81,4 +98,3 @@ and (max-width : 700px) {
 		display: none;
 	}
 }
-

@@ -17,6 +17,6 @@ Developed just for Platt College Courses
 - the current 'class day' display is determined by the most recent post, so adjust the publish dates of your posts to match the correct class day. 
 
 ## Styling
-
-- just edit class-days-bar.css!
+- Choose a color scheme from `admin > settings > Class Days Bar`
+- or just edit class-days-bar.css!
 
