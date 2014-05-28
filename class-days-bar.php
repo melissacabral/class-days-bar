@@ -6,14 +6,11 @@ Author: Melissa Cabral
 Version: 0.1
 */
 /**
- * Style it
+ * Style sheet
  */
 add_action( 'wp_enqueue_scripts','ra_days_style');
  function ra_days_style(){
- 	wp_enqueue_style( 
- 		'ra-days-bar-style', 
- 		plugins_url( 'class-days-bar.css', __FILE__ ) 
- 	);
+ 	wp_enqueue_style( 'ra-days-bar-style', 	plugins_url( 'class-days-bar.css', __FILE__ ) );
  }
 /**
  * Set up the post type in the admin panel
@@ -22,7 +19,7 @@ add_action( 'wp_enqueue_scripts','ra_days_style');
 add_action( 'init', 'ra_register_types_taxos' );
 function ra_register_types_taxos(){
 	register_taxonomy( 'class-day', 'post', array(
-		'hierarchical' => true, //act like categories
+		'hierarchical' => true, 
 		'rewrite' => array( 'slug' => 'class-day' ),
 		'labels' => array( 
 			'name' => 'Class Days',
@@ -109,7 +106,6 @@ function ra_days_bar($before = 'Day: '){
     'fields' => 'ids'
 ) );
 	//TODO:  add a counter here so the CSS width is based on the number of terms.
-	//$posts = get_posts();
 	//fetch the latest post so we can show progress bar
 	$latest_posts = wp_get_recent_posts( array(
 			'numberposts' => 1,
