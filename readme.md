@@ -1,5 +1,5 @@
 # Class Days Bar
-## Developed just for Platt College Courses
+## Developed just for Platt College Courses 
 
 
 ## Installation
@@ -13,7 +13,7 @@
 - insert the template tag in your theme:
 	&lt;?php ra_days_bar(); ?&gt;
 
-- Or use the widget in appearance > widget
+- Or use the widget in appearance > widgets
 
 ### Controlling the progress bar
 - the Days taxonomy is applied to posts, so assign some days to some of your posts. 
@@ -23,9 +23,3 @@
 
 - just edit class-days-bar.css!
 
-
-
-- This will be a list item
-- This will be a list item
-
-    Add a indent and this will end up as code
