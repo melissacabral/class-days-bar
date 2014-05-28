@@ -1,0 +1,84 @@
+/*==days bar*/
+
+*, *:before, *:after {
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+.ra-days-bar{
+	display: block;
+	list-style-type: none;
+	margin:1em 0;
+	padding: 0;
+	background-color: #rgba(255,255,255,.1);
+	color:gray;
+	height:2em;
+	
+}
+
+.ra-days-bar li{
+	display: block;
+	float:left;
+	height:2em;
+	margin:0;
+	padding:.3em;
+	width:3.83%;
+	min-width: 1.5em;
+	text-align: center;
+	background-color:rgba(255,255,255,.15);
+}
+
+.ra-days-bar .current ~ li{
+	background-color:rgba(255,255,255,.1);
+}
+
+.ra-days-bar a{
+	display:block;
+	width: 100%;
+	height:100%;
+	padding:0;
+}
+
+.ra-days-bar .active a{
+	background-color:rgba(0,0,0,.5);
+}
+
+
+.morning-class,
+.ra-days-bar .current{
+	position: relative;
+}
+.morning-class:after,
+.ra-days-bar .current:after{
+	content:'';
+	border-top:solid 8px #FAC012;
+	border-right:solid 5px transparent;
+	border-left:solid 5px transparent;
+	width:10px;
+	height:8px;
+	position: absolute;
+	top:-6px;
+	right:38%;
+}
+.ra-days-bar .current:after{
+	border-top:solid 8px #2baaca;
+
+}
+/* WIDGET-only styles*/
+.days-bar-widget .ra-days-bar{
+	margin:0;
+}
+.days-bar-widget .ra-days-bar .title-li{
+	display: none;
+}
+.days-bar-widget .ra-days-bar li{
+	width: 20%;
+	margin-bottom: 0 !important;
+}
+
+@media only screen 
+and (max-width : 700px) {
+	#content .ra-days-bar{
+		display: none;
+	}
+}
+
