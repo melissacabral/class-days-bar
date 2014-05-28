@@ -100,11 +100,10 @@ function ra_days_bar($before = 'Day: '){
 	$terms = get_terms($taxonomy, $args);
 	//this was necessary to run again so i have IDs for the tax query.
 	//TODO: see if this can be dome with only one use of "get_terms"
-	$terms_ids = get_terms( 
-		$taxonomy, array(
-    'hide_empty' => 0,
-    'fields' => 'ids'
-) );
+	$terms_ids = get_terms( $taxonomy, array(
+    		'hide_empty' => 0,
+    		'fields' => 'ids',
+	) );
 	//TODO:  add a counter here so the CSS width is based on the number of terms.
 	//fetch the latest post so we can show progress bar
 	$latest_posts = wp_get_recent_posts( array(

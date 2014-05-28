@@ -9,7 +9,7 @@ Developed just for Platt College Courses
 ## Usage
 ### Displaying in your theme
 - insert the template tag in your theme:
-	&lt;?php ra_days_bar(); ?&gt;
+	`&lt;?php ra_days_bar(); ?&gt;`
 - Or use the widget in appearance > widgets
 
 ### Controlling the progress bar
